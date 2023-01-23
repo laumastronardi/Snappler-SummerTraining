@@ -1,24 +1,29 @@
-<div>
-  <h1>Profile</h1>
-</div>
+<%= render "header" %>
 
 <div>
-  <h1><%= @user.name %> </h1>
-  <h2>Age: <%= @user.age %> </h2>
+  <h1>User profile</h1>
 </div>
 
+<%= render partial: "profile", locals: { user: @user } %>
+
 <div>
-  <h3>Followers: 
-  <%= @user.followers.count %></h3>
   <div>
-    <% @user.followers.each do |follower| %>
-    <p> <%= follower.name %> </p>
+
+    <h3>Followers: <%= @user.followers.count %></h3>
+    <% @user.followers.each do |f| %>
+      <p> <%= f.name %> </p>
     <% end %>
+
+    <h3>Following: <%= @user.following_ids.count %></h3>
+    <% @user.followings.each do |f| %>
+      <p> <%= f.name %> </p>
+    <% end %>
+
   </div>
-  <h3>Following: <%= @user.following_ids.count %></h3>
-  <%= link_to "Update user", edit_user_path(@user) %>
 
-  <%= button_to "Delete user", user_path(@user.id) , method: :delete %>
+    <%= link_to "Update user", edit_user_path(@user) %>
 
-  <%= button_to @following ? "Unfollow" : "Follow"  , user_follow_path(@user) , method: :post %>
+    <%= button_to "Delete user", user_path(@user.id) , method: :delete %>
+
+    <%= button_to @following ? "Unfollow" : "Follow"  , user_follow_path(@user) , method: :post %>
 </div>

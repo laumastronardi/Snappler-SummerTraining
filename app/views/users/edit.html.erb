@@ -1,5 +1,8 @@
+<%= render "header" %>
+
 <h1>Update User</h1>
 
+<p><%= @user.errors.full_messages %> </p>
 <%= form_with model: @user, method: :patch do |f| %>
 
 <%= render partial: "form", locals: { f: f } %>
