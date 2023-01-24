@@ -6,6 +6,7 @@ table, th, td {
 
 button{
   margin: 0.5em;
+  width: 100%;
 }
 
 input{
@@ -24,12 +25,16 @@ input :focus {
 }
 
 .buttons {
-  display: flex;
-	flex-flow: row wrap;
   justify-content: center;
-  margin: auto;
   background-color: #555;
   border-radius: 0 0 4px 4px;
+}
+
+.buttons button{
+  background-color: #ffffff00; /* Green */
+  border: none;
+  width: 100%;
+  height: 100%;
 }
 
 .card {

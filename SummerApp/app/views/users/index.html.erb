@@ -13,8 +13,8 @@
   <% @users.each do |user| %>
   <tr>
     <td><%= link_to user.name, user %></td>
-    <td><%= user.followers.count %></td>
-    <td><%= user.following_ids.count %></td>
+    <td><%= @follows[user.id] ? @follows[user.id] : 0 %></td>
+    <td><%= @following[user.id] ? @following[user.id] : 0 %></td>
     <td><%= button_to "Follow/Unfollow"  , user_follow_path(user) , method: :post %></td>
   </tr>
   <% end %>

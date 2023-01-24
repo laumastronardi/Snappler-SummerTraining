@@ -6,6 +6,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    @follows = User.joins(:given_follows).group('id').select('users.name').count
+    @following = User.joins(:received_follows).group('id').select('users.name').count
   end
 
   def create
@@ -21,16 +23,17 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  
+
   def toggle_follow
     @user = User.find(params[:user_id])
     @follow = @user.received_follows.where(follower_id: current_user.id)
     if @follow.blank?
       @user.received_follows.create(follower_id: current_user.id)
-      redirect_to @user
     else
       @follow.first.destroy
-      redirect_to root_path
     end
+    redirect_to @user
   end
 
   def update
@@ -51,6 +54,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @following = nil
+    @followers = nil
     @following = @user.received_follows.where(follower_id: current_user.id).present?
   end
 end
