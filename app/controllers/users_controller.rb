@@ -26,10 +26,11 @@ class UsersController < ApplicationController
     @follow = @user.received_follows.where(follower_id: current_user.id)
     if @follow.blank?
       @user.received_follows.create(follower_id: current_user.id)
+      redirect_to @user
     else
       @follow.first.destroy
+      redirect_to root_path
     end
-    redirect_to @user
   end
 
   def update

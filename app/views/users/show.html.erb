@@ -1,15 +1,14 @@
 <%= render "header" %>
 
-<div>
+<div class="pageTitle">
   <h1>User profile</h1>
 </div>
 
-<%= render partial: "profile", locals: { user: @user } %>
-
-<div>
-  <div>
-
-    <h3>Followers: <%= @user.followers.count %></h3>
+<div class="card">
+  <img src="https://api.dicebear.com/5.x/avataaars/svg" alt="Avatar" style="width:100%">
+  <div class="container">
+    <h2><%= @user.name %></h2>
+    <h3> Followers: <%= @user.followers.count %></h3>
     <% @user.followers.each do |f| %>
       <p> <%= f.name %> </p>
     <% end %>
@@ -18,12 +17,12 @@
     <% @user.followings.each do |f| %>
       <p> <%= f.name %> </p>
     <% end %>
-
   </div>
-
-    <%= link_to "Update user", edit_user_path(@user) %>
+  <div class="buttons">
+    <%= button_to "Update user", edit_user_path(@user), method: :get %>
 
     <%= button_to "Delete user", user_path(@user.id) , method: :delete %>
 
     <%= button_to @following ? "Unfollow" : "Follow"  , user_follow_path(@user) , method: :post %>
+  </div>
 </div>

@@ -1,7 +1,7 @@
 <%= render "header" %>
-
-<h1>Update User</h1>
-
+<div>
+  <h1>Update User</h1>
+</div>
 <p><%= @user.errors.full_messages %> </p>
 <%= form_with model: @user, method: :patch do |f| %>
 
