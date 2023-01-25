@@ -2,9 +2,11 @@
 <div>
   <h1>Update User</h1>
 </div>
-<p><%= @user.errors.full_messages %> </p>
-<%= form_with model: @user, method: :patch do |f| %>
+<div class="container">
+  <p><%= @user.errors.full_messages %> </p>
+  <%= form_with model: @user, method: :patch do |f| %>
 
-<%= render partial: "form", locals: { f: f } %>
+  <%= render partial: "form", locals: { f: f } %>
 
-<% end %>
+  <% end %>
+</div>

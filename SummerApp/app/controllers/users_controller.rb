@@ -23,8 +23,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  
-
   def toggle_follow
     @user = User.find(params[:user_id])
     @follow = @user.received_follows.where(follower_id: current_user.id)
@@ -54,8 +52,5 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @following = nil
-    @followers = nil
-    @following = @user.received_follows.where(follower_id: current_user.id).present?
   end
 end

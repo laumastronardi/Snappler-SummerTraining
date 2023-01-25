@@ -2,9 +2,11 @@
 <div class="pageTitle">
   <h1>Create User</h1>
 </div>
-<p><%= @user.errors.full_messages %> </p>
+<div class="container">
+  <p><%= @user.errors.full_messages %> </p>
 
-<%= form_with model: @user, method: :post do |f| %>
-<%= render partial: "form", locals: { f: f } %>
+  <%= form_with model: @user, method: :post do |f| %>
+  <%= render partial: "form", locals: { f: f } %>
 
-<% end %>
+  <% end %>
+</div>
