@@ -20,26 +20,18 @@ input :focus {
   border: 3px solid #555;
 }
 
+.buttons .button_to:hover{
+  background-color: darkblue;
+  color: white;
+}
+
+.buttons .button_to:hover button{
+  color: white;
+}
+
 .container {
   display:flex;
   justify-content: center;
-}
-
-.card p, .card h2, .card h3 {
-  margin-left: 1em;
-}
-
-.buttons {
-  justify-content: center;
-  background-color: #555;
-  border-radius: 0 0 4px 4px;
-}
-
-.buttons button{
-  background-color: #ffffff00; /* Green */
-  border: none;
-  width: 100%;
-  height: 100%;
 }
 
 .card {
@@ -48,10 +40,28 @@ input :focus {
   border-radius: 4px;
   width:fit-content;
   display: block;
+  background-color: rgb(154, 154, 154);
 }
 
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card p, .card h2, .card h3 {
+  margin-left: 1em;
+}
+
+.buttons {
+  justify-content: center;
+  background-color: rgb(88, 88, 88);
+  border-radius: 0 0 4px 4px;
+}
+
+.buttons button{
+  background-color: #ffffff00; /* Green */
+  border: none;
+  width: 100%;
+  height: 100%;
 }
 
 .pageTitle {

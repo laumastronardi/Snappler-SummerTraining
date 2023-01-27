@@ -6,8 +6,14 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    @follows = User.joins(:given_follows).group('id').select('users.name').count
-    @following = User.joins(:received_follows).group('id').select('users.name').count
+    @following = User.joins(:given_follows).group('id').select('users.name').count
+    @follows = User.joins(:received_follows).group('id').select('users.name').count
+
+    respond_to do |format| # show.html.erb
+      format.json { render json: @users.map{|user| user.format_json((@follows[user.id] || 0), (@following[user.id]) || 0)} }
+      #format.json { render json: @user.as_json(include: @follows)}
+      format.html
+    end
   end
 
   def create
@@ -26,31 +32,45 @@ class UsersController < ApplicationController
   def toggle_follow
     @user = User.find(params[:user_id])
     @follow = @user.received_follows.where(follower_id: current_user.id)
+    @following = User.joins(:given_follows).group('id').select('users.name').count
+    @follows = User.joins(:received_follows).group('id').select('users.name').count
     if @follow.blank?
       @user.received_follows.create(follower_id: current_user.id)
     else
       @follow.first.destroy
     end
-    redirect_to @user
+    turbo_stream.replace 'index', partial: "users/user", locals: { user: @user, follows: @follows, following: @following }
+    #redirect_to @user
   end
 
   def update
-    @user = User.find(params[:id])
+    set_user
     @user.update(user_params)
     redirect_to @user
   end
 
   def edit
-    @user = User.find(params[:id])
+    set_user
   end
 
   def destroy
-    @user = User.find(params[:id])
+    set_user
     @user.destroy!
     redirect_to root_path
   end
 
   def show
+    set_user
+    @following = @user.received_follows.where(follower_id: current_user.id).present?
+  end
+
+  private 
+
+  def set_user
     @user = User.find(params[:id])
   end
+
+  def build_json
+  end
+
 end
