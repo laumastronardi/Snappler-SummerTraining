@@ -1,4 +1,7 @@
 <div class="header">
-  <%= link_to "Register user", new_user_path, method: :get %> / 
-  <%= link_to "User List", root_path %>
+  <%= link_to (t '.new'), new_user_path, method: :get %> / 
+  <%= link_to (t '.list'), root_path %>
+</div>
+<div class="lang" style="float: right">
+  <%= button_to (t '.lang_button'), lang_path, method: :patch %>
 </div>

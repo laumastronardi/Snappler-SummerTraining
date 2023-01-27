@@ -30,4 +30,16 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  users:
+    index:
+      title: "Users List"
+    show:
+      title: "Profile"
+    edit:
+      title: "Update user"
+    new:
+      title: "Create user"
+    header:
+      new: Register User
+      list: Users List
+      lang_button: "Español"
